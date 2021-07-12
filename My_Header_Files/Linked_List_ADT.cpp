@@ -15,7 +15,7 @@ private:
     Node<type> *head;
 
 public:
-    LinkedList(void) { head = NULL; } // Constructor
+    LinkedList(void) { head = NULL; }
     void insert(type key)
     {
         if (!head)
@@ -95,6 +95,24 @@ public:
         {
             previous->next = current->next;
             delete current;
+        }
+    }
+    void reverse(void)
+    {
+        if (head)
+        {
+            Node<type> *previousNode = NULL;
+            Node<type> *currentNode = head;
+            Node<type> *nextNode = head->next;
+            while (nextNode)
+            {
+                currentNode->next = previousNode;
+                previousNode = currentNode;
+                currentNode = nextNode;
+                nextNode = nextNode->next;
+            }
+            currentNode->next = previousNode;
+            head = currentNode;
         }
     }
     void printList(void)

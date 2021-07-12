@@ -38,6 +38,12 @@ protected:
         }
         delete[] temp;
     }
+    void swap(type &a, type &b)
+    {
+        type temp = a;
+        a = b;
+        b = temp;
+    }
 
 public:
     Array(int size)
@@ -58,8 +64,7 @@ public:
     }
     void append(type key)
     {
-        usedSize++;
-        arr[usedSize - 1] = key;
+        arr[usedSize++] = key;
     }
     int search(type key)
     {
@@ -89,6 +94,13 @@ public:
         else
         {
             std::cout << "Invalid key!\n";
+        }
+    }
+    void reverse(void)
+    {
+        for (int i = 0; i < usedSize / 2; i++)
+        {
+            swap(arr[i], arr[usedSize - 1 - i]);
         }
     }
     void sort()
