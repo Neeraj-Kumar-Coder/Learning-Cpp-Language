@@ -10,6 +10,7 @@ class Complex
 
 public:
     Complex(int, int); //Constructor declaration (Constructor is automatically invoked when the object is created)
+    // Complex(void); // Default constructor as it takes no arguments
 
     void printNumber(void)
     {
@@ -27,9 +28,17 @@ Complex ::Complex(int num1 = 0, int num2 = 0)
     // cout<<"This will be executed when creating the objects\n";
 }
 
+// Definition of default constructor
+// Complex ::Complex(void)
+// {
+//     realPart=1;
+//     complexPart=1;
+// }
+
 int main(void)
 {
-    Complex z1(3, 4), z2(5, 6);
+    Complex z1(3, 4);           // Implicit call
+    Complex z2 = Complex(5, 6); // Explicit call
     z1.printNumber();
     z2.printNumber();
     return 0;

@@ -1,17 +1,8 @@
-/*
-** AUTHOR = NEERAJ KUMAR
-** PURPOSE = LEARNING FROM BEIGNING
-** DATE = 24 MARCH 2021
-** TIME = 03:10 PM
-*/
-
-#include <iostream>
-
-// using namespace std;
-
 int main(void)
 {
-    std::cout << "Hello, World";
-    // cout << "Hello, World";
+    Complex z1(3, 4);           // Implicit call
+    Complex z2 = Complex(5, 6); // Explicit call
+    z1.printNumber();
+    z2.printNumber();
     return 0;
 }

@@ -18,8 +18,8 @@ void Shop::getItem(void)
     cout << "Enter the number of items in your shop: ";
     cin >> itemCount;
 
-    itemId = new int(itemCount);
-    itemPrice = new int(itemCount);
+    itemId = new int[itemCount];
+    itemPrice = new int[itemCount];
 
     for (int i = 0; i < itemCount; i++)
     {
