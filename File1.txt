@@ -1,0 +1,5 @@
+This is a sample file for reading from a C++ program.
+This is a multiline content.
+Another new line.
+By,
+Neeraj Kumar
