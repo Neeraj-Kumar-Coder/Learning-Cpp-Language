@@ -1,19 +1,19 @@
 #ifndef QUEUE_ADT
 #define QUEUE_ADT
 template <class type>
-class NodeforQueue
+class NodeForQueue
 {
 public:
     type data;
-    NodeforQueue<type> *next;
+    NodeForQueue<type> *next;
 };
 
 template <class type>
 class Queue
 {
 private:
-    NodeforQueue<type> *frontInd;
-    NodeforQueue<type> *backInd;
+    NodeForQueue<type> *frontInd;
+    NodeForQueue<type> *backInd;
 
 public:
     Queue(void) { frontInd = backInd = NULL; }
@@ -21,13 +21,13 @@ public:
     {
         if (!backInd)
         {
-            backInd = new NodeforQueue<type>;
+            backInd = new NodeForQueue<type>;
             frontInd = backInd;
             backInd->data = key;
             backInd->next = NULL;
             return;
         }
-        backInd->next = new NodeforQueue<type>;
+        backInd->next = new NodeForQueue<type>;
         backInd->next->data = key;
         backInd->next->next = NULL;
         backInd = backInd->next;
@@ -36,7 +36,7 @@ public:
     {
         if (frontInd)
         {
-            NodeforQueue<type> *tempNode = frontInd;
+            NodeForQueue<type> *tempNode = frontInd;
             type tempData = tempNode->data;
             frontInd = frontInd->next;
             delete tempNode;

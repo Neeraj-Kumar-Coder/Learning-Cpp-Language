@@ -1,6 +1,7 @@
 #include <iostream>
-#include "Stack_ADT.cpp"
-#include "Queue_ADT.cpp"
+// #include "Stack_ADT.cpp"
+// #include "Queue_ADT.cpp"
+#include "Binary_Tree_ADT.cpp"
 
 using namespace std;
 
@@ -43,5 +44,15 @@ int main(void)
     cout << "The front element of the queue is: " << que.front() << '\n';
     cout << "The rear element of the queue is: " << que.rear() << '\n';
     */
+
+    
+    // BINARY TREE TESTING...
+    BinaryTree<int> tree;
+    for (int i = 1; i <= 10; i++)
+        tree.insert(i);
+    tree.preOrderTraversal();
+    tree.inOrderTraversal();
+    tree.postOrderTraversal();
+   
     return 0;
 }

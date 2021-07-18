@@ -1,18 +1,18 @@
 #ifndef STACK_ADT
 #define STACK_ADT
 template <class type>
-class NodeforStack
+class NodeForStack
 {
 public:
     type data;
-    NodeforStack<type> *next;
+    NodeForStack<type> *next;
 };
 
 template <class type>
 class Stack
 {
 private:
-    NodeforStack<type> *top;
+    NodeForStack<type> *top;
 
 public:
     Stack(void) { top = NULL; }
@@ -24,12 +24,12 @@ public:
     {
         if (!top)
         {
-            top = new NodeforStack<type>;
+            top = new NodeForStack<type>;
             top->data = key;
             top->next = NULL;
             return;
         }
-        NodeforStack<type> *newNode = new NodeforStack<type>;
+        NodeForStack<type> *newNode = new NodeForStack<type>;
         newNode->data = key;
         newNode->next = top;
         top = newNode;
@@ -38,7 +38,7 @@ public:
     {
         if (!isEmpty())
         {
-            NodeforStack<type> *tempNode = top;
+            NodeForStack<type> *tempNode = top;
             type tempData = tempNode->data;
             top = top->next;
             delete tempNode;
@@ -60,7 +60,7 @@ public:
     {
         if (!isEmpty())
         {
-            NodeforStack<type> *tempNode = top;
+            NodeForStack<type> *tempNode = top;
             while (tempNode->next)
             {
                 tempNode = tempNode->next;
