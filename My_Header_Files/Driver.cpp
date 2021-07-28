@@ -45,7 +45,6 @@ int main(void)
     cout << "The rear element of the queue is: " << que.rear() << '\n';
     */
 
-    
     // BINARY TREE TESTING...
     BinaryTree<int> tree;
     for (int i = 1; i <= 10; i++)
@@ -53,6 +52,6 @@ int main(void)
     tree.preOrderTraversal();
     tree.inOrderTraversal();
     tree.postOrderTraversal();
-   
+
     return 0;
 }

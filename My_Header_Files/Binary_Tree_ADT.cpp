@@ -1,6 +1,7 @@
 #ifndef BINARY_TREE_ADT
 #define BINARY_TREE_ADT
 #include "Queue_ADT.cpp"
+
 template <class type>
 class NodeForBinaryTree
 {
