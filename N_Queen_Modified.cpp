@@ -30,6 +30,7 @@ void printBoard(int **board, int size)
         }
         cout << '\n';
     }
+    cout << '\n';
 }
 
 bool isSafePosition(int **board, int row, int column, int totalRow)
@@ -82,6 +83,7 @@ bool N_Queen(int **board, const int totalRow, int currentRow = 0)
 {
     if (currentRow == totalRow) // Successful in finding a solution
     {
+        printBoard(board, totalRow);
         return true;
     }
     for (int currentColumn = 0; currentColumn < totalRow; currentColumn++)
@@ -89,10 +91,7 @@ bool N_Queen(int **board, const int totalRow, int currentRow = 0)
         if (isSafePosition(board, currentRow, currentColumn, totalRow))
         {
             board[currentRow][currentColumn] = 1; // Placed the Queen at the current position
-            if (N_Queen(board, totalRow, currentRow + 1))
-            {
-                return true;
-            }
+            N_Queen(board, totalRow, currentRow + 1);
             board[currentRow][currentColumn] = 0; // Backtracking (Removed the Queen as it didn't gave a solution)
         }
     }
@@ -105,14 +104,6 @@ int main(void)
     cout << "Enter the size of the chess board: ";
     cin >> size;
     int **chessBoard = createBoard(size);
-    if (N_Queen(chessBoard, size))
-    {
-        cout << "Chess board solved:\n\n";
-        printBoard(chessBoard, size);
-    }
-    else
-    {
-        cout << "Solution do not exist!\n";
-    }
+    N_Queen(chessBoard, size);
     return 0;
 }
