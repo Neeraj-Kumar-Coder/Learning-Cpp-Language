@@ -115,27 +115,30 @@ bool sudokuSolver(int **sudokuGrid, int size)
 
 int main(void)
 {
-    freopen("SudokuInput.txt", "r", stdin);
-    int **sudokuMaze = new int *[9];
-    for (int i = 0; i < 9; i++)
+    int size;
+    cout << "Enter the size of sudoku you want to solve: ";
+    cin >> size;
+    int **sudokuMaze = new int *[size];
+    for (int i = 0; i < size; i++)
     {
-        sudokuMaze[i] = new int[9];
+        sudokuMaze[i] = new int[size];
     }
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < size; i++)
     {
-        for (int j = 0; j < 9; j++)
+        for (int j = 0; j < size; j++)
         {
+            cout << "Enter the element at (" << i << ',' << ' ' << j << "): ";
             cin >> sudokuMaze[i][j];
         }
     }
-    if (sudokuSolver(sudokuMaze, 9))
+    if (sudokuSolver(sudokuMaze, size))
     {
-        cout << "SOLVED!\n";
-        printSudoku(sudokuMaze, 9);
+        cout << "Solved Sudoku is:\n\n";
+        printSudoku(sudokuMaze, size);
     }
     else
     {
-        cout << "Can't solve!\n";
+        cout << "This Sudoku can't be solved!\n";
     }
     return 0;
 }
