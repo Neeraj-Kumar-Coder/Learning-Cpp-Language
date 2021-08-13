@@ -1,18 +1,18 @@
 #ifndef LINKED_LIST_ADT
 #define LINKED_LIST_ADT
 template <class type>
-class Node
+class NodeForLinkedList
 {
 public:
     type data;
-    Node<type> *next;
+    NodeForLinkedList<type> *next;
 };
 
 template <class type>
 class LinkedList
 {
 private:
-    Node<type> *head;
+    NodeForLinkedList<type> *head;
 
 public:
     LinkedList(void) { head = NULL; }
@@ -20,17 +20,17 @@ public:
     {
         if (!head)
         {
-            head = new Node<type>;
+            head = new NodeForLinkedList<type>;
             head->data = key;
             head->next = NULL;
             return;
         }
-        Node<type> *temp = head;
+        NodeForLinkedList<type> *temp = head;
         while (temp->next)
         {
             temp = temp->next;
         }
-        temp->next = new Node<type>;
+        temp->next = new NodeForLinkedList<type>;
         temp->next->data = key;
         temp->next->next = NULL;
     }
@@ -38,12 +38,12 @@ public:
     {
         if (!head)
         {
-            head = new Node<type>;
+            head = new NodeForLinkedList<type>;
             head->data = key;
             head->next = NULL;
             return;
         }
-        Node<type> *temp = head;
+        NodeForLinkedList<type> *temp = head;
         while (temp->next && temp->next->data < key)
         {
             temp = temp->next;
@@ -52,14 +52,14 @@ public:
         {
             if (temp->data > key)
             {
-                Node<type> *newNode = new Node<type>;
+                NodeForLinkedList<type> *newNode = new NodeForLinkedList<type>;
                 newNode->data = key;
                 newNode->next = temp;
                 head = newNode;
             }
             else
             {
-                Node<type> *newNode = new Node<type>;
+                NodeForLinkedList<type> *newNode = new NodeForLinkedList<type>;
                 newNode->data = key;
                 newNode->next = temp->next;
                 temp->next = newNode;
@@ -67,7 +67,7 @@ public:
         }
         else
         {
-            Node<type> *newNode = new Node<type>;
+            NodeForLinkedList<type> *newNode = new NodeForLinkedList<type>;
             newNode->data = key;
             newNode->next = temp->next;
             temp->next = newNode;
@@ -75,8 +75,8 @@ public:
     }
     void deleteNode(type key)
     {
-        Node<type> *previous = NULL;
-        Node<type> *current = head;
+        NodeForLinkedList<type> *previous = NULL;
+        NodeForLinkedList<type> *current = head;
         while (current && current->data != key)
         {
             previous = current;
@@ -101,9 +101,9 @@ public:
     {
         if (head)
         {
-            Node<type> *previousNode = NULL;
-            Node<type> *currentNode = head;
-            Node<type> *nextNode = head->next;
+            NodeForLinkedList<type> *previousNode = NULL;
+            NodeForLinkedList<type> *currentNode = head;
+            NodeForLinkedList<type> *nextNode = head->next;
             while (nextNode)
             {
                 currentNode->next = previousNode;
@@ -117,7 +117,7 @@ public:
     }
     void printList(void)
     {
-        Node<type> *temp = head;
+        NodeForLinkedList<type> *temp = head;
         while (temp)
         {
             std::cout << temp->data << ' ';
@@ -128,7 +128,7 @@ public:
     size_t lengthOfList(void)
     {
         size_t length = 0;
-        Node<type> *temp = head;
+        NodeForLinkedList<type> *temp = head;
         while (temp)
         {
             length++;
@@ -141,7 +141,7 @@ public:
         printListReverse(head);
         std::cout << '\n';
     }
-    void printListReverse(Node<type> *head)
+    void printListReverse(NodeForLinkedList<type> *head)
     {
         if (!head)
         {

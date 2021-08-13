@@ -63,5 +63,9 @@ public:
         std::cout << "The queue is Empty!\n";
         exit(EXIT_FAILURE);
     }
+    int isEmpty(void)
+    {
+        return !frontInd;
+    }
 };
 #endif
