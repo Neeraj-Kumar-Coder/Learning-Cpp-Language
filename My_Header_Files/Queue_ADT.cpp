@@ -39,6 +39,8 @@ public:
             NodeForQueue<type> *tempNode = frontInd;
             type tempData = tempNode->data;
             frontInd = frontInd->next;
+            if (!frontInd) // Queue became empty after dequeuing
+                backInd = frontInd;
             delete tempNode;
             return tempData;
         }

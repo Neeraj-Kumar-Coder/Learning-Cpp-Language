@@ -135,6 +135,5 @@ int main(void)
     tree.inOrderTraversal();
     tree.preOrderTraversal();
     tree.postOrderTraversal();
-
     return 0;
 }
