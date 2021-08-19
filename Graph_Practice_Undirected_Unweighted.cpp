@@ -2,6 +2,7 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <map>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ int main(void)
             graph[key2].push_back(key1);
         }
     }
-    
+
     cout << "\nThe Adjacency List Of The Graph Is:\n";
     for (int i = 0; i < vertex; i++)
     {
@@ -38,7 +39,6 @@ int main(void)
 
     // BFS of the graph
     bool isVisited[vertex] = {false};
-    isVisited[key1] = true;
     queue<int> indexQueue;
 
     cout << "Enter the intial vertex for BFS: ";
@@ -46,6 +46,7 @@ int main(void)
 
     cout << "BFS: ";
     cout << key1 << ' ';
+    isVisited[key1] = true;
     indexQueue.push(key1);
     while (!indexQueue.empty())
     {
@@ -96,5 +97,53 @@ int main(void)
         }
     }
     cout << '\n';
+
+    // Cyclic Detection
+    /*
+    flag:
+    { -1, unvisited
+    { 0, visited and in stack
+    { 1, visited but not in stack
+    */
+    int flag[vertex];
+    for (auto &&i : flag)
+    {
+        i = -1; // Marking every vertex unvisited
+    }
+    map<int, int> parentMap;
+
+    key2 = 0;
+    indexStack.push(key2);
+    flag[key2] = 0;
+    while (!indexStack.empty())
+    {
+        key2 = indexStack.top();
+        indexStack.pop();
+        flag[key2] = 1;
+        for (int i = 0; i < (int)graph[key2].size(); i++)
+        {
+            if (flag[graph[key2][i]] == -1)
+            {
+                flag[graph[key2][i]] = 1;
+                parentMap[graph[key2][i]] = key2;
+                indexStack.push(key2);
+                flag[key2] = 0;
+                key2 = graph[key2][i];
+                i = -1;
+            }
+            else if (flag[graph[key2][i]] == 0 && parentMap[key2] != graph[key2][i])
+            {
+                cout << "Cycle Detected!\n";
+                goto skip;
+            }
+            else if (key2 == graph[key2][i])
+            {
+                cout << "Self loop detected!\n";
+            }
+        }
+    }
+    cout << "No Cycle Detected!\n";
+
+skip:
     return 0;
 }

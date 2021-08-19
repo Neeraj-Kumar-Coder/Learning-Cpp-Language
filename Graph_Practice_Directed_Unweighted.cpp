@@ -100,5 +100,54 @@ int main(void)
     }
     cout << '\n';
 
+    // Cyclic Detection
+    /*
+    flag:
+    { -1, unvisited
+    { 0, visited and in stack
+    { 1, visited but not in stack
+    */
+    int flag[vertex];
+    for (auto &&i : flag)
+    {
+        i = -1; // Marking every vertex unvisited
+    }
+
+    for (int i = 0; i < vertex; i++)
+    {
+        if (flag[i] == -1)
+        {
+            indexStack.push(i);
+            flag[i] = 0;
+            while (!indexStack.empty())
+            {
+                key2 = indexStack.top();
+                indexStack.pop();
+                flag[key2] = 1;
+                for (int j = 0; j < (int)graph[key2].size(); j++)
+                {
+                    if (flag[graph[key2][j]] == -1)
+                    {
+                        flag[graph[key2][j]] = 1;
+                        indexStack.push(key2);
+                        flag[key2] = 0;
+                        key2 = graph[key2][j];
+                        j = -1;
+                    }
+                    else if (flag[graph[key2][j]] == 0)
+                    {
+                        cout << "Cycle Detected!\n";
+                        goto skip;
+                    }
+                    else if (key2 == graph[key2][j])
+                    {
+                        cout << "Self loop detected!\n";
+                    }
+                }
+            }
+        }
+    }
+    cout << "No cycle detected!\n";
+skip:
     return 0;
 }
