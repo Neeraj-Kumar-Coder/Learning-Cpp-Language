@@ -7,6 +7,7 @@ using namespace std;
 
 int main(void)
 {
+    // Taking graph as input
     int vertex, edges, key1, key2;
     cout << "Enter the number of vertices: ";
     cin >> vertex;

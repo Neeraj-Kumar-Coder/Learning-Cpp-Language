@@ -64,10 +64,14 @@ int main(void)
     }
     cout << '\n';
 
-    // Resetting isVisited array
+    // Resetting
     for (auto &&i : isVisited)
     {
         i = false;
+    }
+    while (!indexQueue.empty())
+    {
+        indexQueue.pop();
     }
 
     // DFS of the graph
@@ -97,6 +101,10 @@ int main(void)
         }
     }
     cout << '\n';
+    while (!indexStack.empty())
+    {
+        indexStack.pop();
+    }
 
     // Cyclic Detection
     /*
@@ -145,5 +153,54 @@ int main(void)
     cout << "No Cycle Detected!\n";
 
 skip:
+    while (!indexStack.empty()) // Resetting everthing
+    {
+        indexStack.pop();
+    }
+
+    // Checking for bipartite graph
+    /*
+    color
+    {-1, uncolored and unvisited
+    { 0, red colored and visited
+    { 1, black colored and visited
+    */
+    int color[vertex];
+    for (auto &&i : color)
+    {
+        i = -1;
+    }
+
+    key1 = 0;
+    color[key1] = 0;
+    indexQueue.push(key1);
+    while (!indexQueue.empty())
+    {
+        key1 = indexQueue.front();
+        indexQueue.pop();
+        for (int i = 0; i < (int)graph[key1].size(); i++)
+        {
+            if (color[graph[key1][i]] == -1)
+            {
+                color[graph[key1][i]] = color[key1] == 0 ? 1 : 0;
+                indexQueue.push(graph[key1][i]);
+            }
+            else
+            {
+                int tempColor = color[graph[key1][i]] == 0 ? 1 : 0;
+                if (tempColor != color[key1])
+                {
+                    cout << "Graph is not Bipartite!\n";
+                    goto last;
+                }
+            }
+        }
+    }
+    cout << "Graph is Bipartite!\n";
+last:
+    while (!indexQueue.empty())
+    {
+        indexQueue.pop();
+    }
     return 0;
 }
