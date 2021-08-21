@@ -43,7 +43,7 @@ void getAllPaths(vector<vector<int>> graph, int source, int destination, bool is
     {
         if (!isVisited[graph[source][i]])
         {
-            getAllPaths(graph, graph[source][i], destination, isVisited, pathTillNow + to_string(graph[source][i]));
+            getAllPaths(graph, graph[source][i], destination, isVisited, pathTillNow + '-' + to_string(graph[source][i]));
         }
     }
     isVisited[source] = false;
