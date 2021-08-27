@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <set>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ void DFS(vector<vector<int>>, bool[], int);
 void DFS_noPrint(vector<vector<int>>, bool[], int);
 bool isConnected(vector<vector<int>>, bool[]);
 void getConnectedComponents(vector<vector<int>>, bool[]);
+void hamiltonianPathOrCycle(vector<vector<int>>, set<int>, int, int, string);
 
 int main(void)
 {
@@ -65,6 +67,11 @@ int main(void)
         i = false;
     }
 
+    set<int> Isvisited;
+    cout << "Enter the source for hamiltonian path or cycle: ";
+    cin >> source;
+    cout << "The Hamiltonian path is ended by \'.\' and cycle by \'@\':\n";
+    hamiltonianPathOrCycle(graph, Isvisited, source, source, to_string(source) + "");
     return 0;
 }
 
@@ -192,4 +199,40 @@ void getConnectedComponents(vector<vector<int>> graph, bool visited[])
             cout << '\n';
         }
     }
+}
+
+void hamiltonianPathOrCycle(vector<vector<int>> graph, set<int> visited, int originalSource, int currentVertex, string pathSoFar)
+{
+    if (visited.size() == graph.size() - 1)
+    {
+        cout << pathSoFar;
+        bool isHamiltonianCycle = false;
+        for (int vertex : graph[currentVertex])
+        {
+            if (vertex == originalSource)
+            {
+                isHamiltonianCycle = true;
+                break;
+            }
+        }
+        if (isHamiltonianCycle)
+        {
+            cout << " @\n";
+        }
+        else
+        {
+            cout << " .\n";
+        }
+        return;
+    }
+
+    visited.insert(currentVertex);
+    for (int neighbour = 0; neighbour < (int)graph[currentVertex].size(); neighbour++)
+    {
+        if (visited.find(graph[currentVertex][neighbour]) == visited.end())
+        {
+            hamiltonianPathOrCycle(graph, visited, originalSource, graph[currentVertex][neighbour], pathSoFar + "-" + to_string(graph[currentVertex][neighbour]));
+        }
+    }
+    visited.erase(currentVertex);
 }
