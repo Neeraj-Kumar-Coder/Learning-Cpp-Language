@@ -83,6 +83,7 @@
         "variant": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "strstream": "cpp"
+        "strstream": "cpp",
+        "source_location": "cpp"
     }
 }
