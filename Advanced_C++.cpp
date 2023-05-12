@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
 
+#define console_log(...) recursive_printer(__VA_ARGS__)
+
 using namespace std;
 
 class Base
@@ -63,5 +65,9 @@ int main(void)
 
     printer<1, 2, 3, 4>();
     recursive_printer(1, 2, 3, "Hi I am neeraj", 55.33);
+
+    float real = 12.334;
+    int integer = static_cast<int>(real);
+    console_log("The integer value is", integer, "of the real number", real);
     return 0;
 }
